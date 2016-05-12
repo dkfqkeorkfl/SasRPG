@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.20506</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <RootNamespace></RootNamespace>
+    <ProjectGuid>{F8A80E44-0B6C-654A-A833-353845B1D685}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <AssemblyName>Assembly-CSharp-firstpass</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <BaseDirectory>Assets</BaseDirectory>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Temp\bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;UNITY_5_3_OR_NEWER;UNITY_5_3_4;UNITY_5_3;UNITY_5;ENABLE_NEW_BUGREPORTER;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_DUCK_TYPING;ENABLE_FRAME_DEBUGGER;ENABLE_GENERICS;ENABLE_HOME_SCREEN;ENABLE_IMAGEEFFECTS;ENABLE_LIGHT_PROBES_LEGACY;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_PLUGIN_INSPECTOR;ENABLE_SHADOWS;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_SPRITERENDERER_FLIPPING;ENABLE_SPRITES;ENABLE_SPRITE_POLYGON;ENABLE_TERRAIN;ENABLE_RAKNET;ENABLE_UNET;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_HUB;ENABLE_CLOUD_PROJECT_ID;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_METRICS;ENABLE_EDITOR_METRICS_CACHING;INCLUDE_DYNAMIC_GI;INCLUDE_GI;INCLUDE_IL2CPP;INCLUDE_DIRECTX12;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;ENABLE_LOCALIZATION;ENABLE_ANDROID_ATLAS_ETC1_COMPRESSION;ENABLE_EDITOR_TESTS_RUNNER;UNITY_STANDALONE_OSX;UNITY_STANDALONE;ENABLE_SUBSTANCE;ENABLE_GAMECENTER;ENABLE_TEXTUREID_MAP;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_LOG_MIXED_STACKTRACE;ENABLE_UNITYWEBREQUEST;ENABLE_CLUSTERINPUT;ENABLE_WEBSOCKET_HOST;ENABLE_MONO;ENABLE_PROFILER;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_OSX</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoWarn>0169</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Temp\bin\Release\</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoWarn>0169</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.XML" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="UnityEngine">
+      <HintPath>/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor">
+      <HintPath>/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEditor.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+     <Compile Include="Assets\Plugins\ObjectPool\Scripts\BetterObjectPool.cs" />
+     <Compile Include="Assets\Plugins\ObjectPool\Scripts\IcosphereGenerator.cs" />
+     <Compile Include="Assets\Plugins\ObjectPool\Scripts\IcosphereObjectPool.cs" />
+     <Compile Include="Assets\Plugins\ObjectPool\Scripts\UI_Other\ActiveInfoText.cs" />
+     <Compile Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Scripts\Antialiasing.cs" />
+     <Compile Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Scripts\Bloom.cs" />
+     <Compile Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Scripts\BloomAndFlares.cs" />
+     <Compile Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Scripts\BloomOptimized.cs" />
+     <Compile Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Scripts\Blur.cs" />
+     <Compile Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Scripts\BlurOptimized.cs" />
+     <Compile Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Scripts\CameraMotionBlur.cs" />
+     <Compile Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Scripts\ColorCorrectionCurves.cs" />
+     <Compile Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Scripts\ColorCorrectionLookup.cs" />
+     <Compile Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Scripts\ColorCorrectionRamp.cs" />
+     <Compile Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Scripts\ContrastEnhance.cs" />
+     <Compile Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Scripts\ContrastStretch.cs" />
+     <Compile Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Scripts\CreaseShading.cs" />
+     <Compile Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Scripts\DepthOfField.cs" />
+     <Compile Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Scripts\DepthOfFieldDeprecated.cs" />
+     <Compile Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Scripts\EdgeDetection.cs" />
+     <Compile Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Scripts\Fisheye.cs" />
+     <Compile Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Scripts\GlobalFog.cs" />
+     <Compile Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Scripts\Grayscale.cs" />
+     <Compile Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Scripts\ImageEffectBase.cs" />
+     <Compile Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Scripts\ImageEffects.cs" />
+     <Compile Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Scripts\MotionBlur.cs" />
+     <Compile Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Scripts\NoiseAndGrain.cs" />
+     <Compile Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Scripts\NoiseAndScratches.cs" />
+     <Compile Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Scripts\PostEffectsBase.cs" />
+     <Compile Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Scripts\PostEffectsHelper.cs" />
+     <Compile Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Scripts\Quads.cs" />
+     <Compile Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Scripts\ScreenOverlay.cs" />
+     <Compile Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Scripts\ScreenSpaceAmbientObscurance.cs" />
+     <Compile Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Scripts\ScreenSpaceAmbientOcclusion.cs" />
+     <Compile Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Scripts\SepiaTone.cs" />
+     <Compile Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Scripts\SunShafts.cs" />
+     <Compile Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Scripts\TiltShift.cs" />
+     <Compile Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Scripts\Tonemapping.cs" />
+     <Compile Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Scripts\Triangles.cs" />
+     <Compile Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Scripts\Twirl.cs" />
+     <Compile Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Scripts\VignetteAndChromaticAberration.cs" />
+     <Compile Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Scripts\Vortex.cs" />
+     <Compile Include="Assets\Plugins\SquarePieStudios Tools\Example\Tools\Singletons\ExampleLogger\ExampleCustomLogger.cs" />
+     <Compile Include="Assets\Plugins\SquarePieStudios Tools\Example\Tools\Singletons\ExampleLogger\ExampleLoggers.cs" />
+     <Compile Include="Assets\Plugins\SquarePieStudios Tools\Example\Tools\Singletons\ExampleLogger\ExampleSceneTextBox.cs" />
+     <Compile Include="Assets\Plugins\SquarePieStudios Tools\Example\Tools\Singletons\ExampleSceneBase.cs" />
+     <Compile Include="Assets\Plugins\SquarePieStudios Tools\Example\Tools\Singletons\ExampleSceneHandler.cs" />
+     <Compile Include="Assets\Plugins\SquarePieStudios Tools\Example\Tools\Singletons\ExampleSceneHandler_DI.cs" />
+     <Compile Include="Assets\Plugins\SquarePieStudios Tools\Scripts\Tools\Singletons\MonoSingleton.cs" />
+     <Compile Include="Assets\Plugins\SquarePieStudios Tools\Scripts\Tools\Singletons\Singleton.cs" />
+     <Compile Include="Assets\Plugins\SquarePieStudios Tools\Scripts\Tools\Singletons\Singletons.cs" />
+     <Compile Include="Assets\Plugins\TouchScript\Examples\Camera\Scripts\CameraController.cs" />
+     <Compile Include="Assets\Plugins\TouchScript\Examples\Checkers\Scripts\Board.cs" />
+     <Compile Include="Assets\Plugins\TouchScript\Examples\Checkers\Scripts\Exclusive.cs" />
+     <Compile Include="Assets\Plugins\TouchScript\Examples\Colors\Scripts\Circle.cs" />
+     <Compile Include="Assets\Plugins\TouchScript\Examples\Colors\Scripts\Colors.cs" />
+     <Compile Include="Assets\Plugins\TouchScript\Examples\Cube\Scripts\CustomTouchProxy.cs" />
+     <Compile Include="Assets\Plugins\TouchScript\Examples\Cube\Scripts\Init.cs" />
+     <Compile Include="Assets\Plugins\TouchScript\Examples\Cube\Scripts\LayerDelegate.cs" />
+     <Compile Include="Assets\Plugins\TouchScript\Examples\Cube\Scripts\RedirectInput.cs" />
+     <Compile Include="Assets\Plugins\TouchScript\Examples\Multiuser\Scripts\Logo.cs" />
+     <Compile Include="Assets\Plugins\TouchScript\Examples\Photos\Scripts\Container.cs" />
+     <Compile Include="Assets\Plugins\TouchScript\Examples\Photos\Scripts\SetColor.cs" />
+     <Compile Include="Assets\Plugins\TouchScript\Examples\Portal\Scripts\Planet.cs" />
+     <Compile Include="Assets\Plugins\TouchScript\Examples\Portal\Scripts\Rotator.cs" />
+     <Compile Include="Assets\Plugins\TouchScript\Examples\Portal\Scripts\Vortex.cs" />
+     <Compile Include="Assets\Plugins\TouchScript\Examples\RawInput\Scripts\Ball.cs" />
+     <Compile Include="Assets\Plugins\TouchScript\Examples\RawInput\Scripts\Spawner.cs" />
+     <Compile Include="Assets\Plugins\TouchScript\Examples\Taps\Scripts\Break.cs" />
+     <Compile Include="Assets\Plugins\TouchScript\Examples\Taps\Scripts\Kick.cs" />
+     <Compile Include="Assets\Plugins\TouchScript\Examples\Taps\Scripts\Spawn.cs" />
+     <Compile Include="Assets\Plugins\TouchScript\Examples\_misc\Scripts\Checker.cs" />
+     <Compile Include="Assets\Plugins\TouchScript\Examples\_misc\Scripts\KillMe.cs" />
+     <Compile Include="Assets\Plugins\TouchScript\Examples\_misc\Scripts\Runner.cs" />
+     <Compile Include="Assets\Plugins\TouchScript\Modules\TUIO\Scripts\InputSources\TuioInput.cs" />
+     <Compile Include="Assets\Plugins\TouchScript\Scripts\Behaviors\TouchScriptInputModule.cs" />
+     <Compile Include="Assets\Plugins\TouchScript\Scripts\Behaviors\Transformer.cs" />
+     <Compile Include="Assets\Plugins\TouchScript\Scripts\Behaviors\Visualizer\TouchProxy.cs" />
+     <Compile Include="Assets\Plugins\TouchScript\Scripts\Behaviors\Visualizer\TouchVisualizer.cs" />
+     <Compile Include="Assets\Plugins\TouchScript\Scripts\Clusters\Clusters.cs" />
+     <Compile Include="Assets\Plugins\TouchScript\Scripts\DebuggableMonoBehaviour.cs" />
+     <Compile Include="Assets\Plugins\TouchScript\Scripts\Devices\Display\DisplayDevice.cs" />
+     <Compile Include="Assets\Plugins\TouchScript\Scripts\Devices\Display\GenericDisplayDevice.cs" />
+     <Compile Include="Assets\Plugins\TouchScript\Scripts\Devices\Display\IDisplayDevice.cs" />
+     <Compile Include="Assets\Plugins\TouchScript\Scripts\GestureManager.cs" />
+     <Compile Include="Assets\Plugins\TouchScript\Scripts\GestureManagerInstance.cs" />
+     <Compile Include="Assets\Plugins\TouchScript\Scripts\Gestures\Base\PinnedTransformGestureBase.cs" />
+     <Compile Include="Assets\Plugins\TouchScript\Scripts\Gestures\Base\TransformGestureBase.cs" />
+     <Compile Include="Assets\Plugins\TouchScript\Scripts\Gestures\Clustered\ClusteredPinnedTransformGesture.cs" />
+     <Compile Include="Assets\Plugins\TouchScript\Scripts\Gestures\Clustered\ClusteredScreenTransformGesture.cs" />
+     <Compile Include="Assets\Plugins\TouchScript\Scripts\Gestures\Clustered\ClusteredTransformGesture.cs" />
+     <Compile Include="Assets\Plugins\TouchScript\Scripts\Gestures\FlickGesture.cs" />
+     <Compile Include="Assets\Plugins\TouchScript\Scripts\Gestures\Gesture.cs" />
+     <Compile Include="Assets\Plugins\TouchScript\Scripts\Gestures\IGestureDelegate.cs" />
+     <Compile Include="Assets\Plugins\TouchScript\Scripts\Gestures\ITransformGesture.cs" />
+     <Compile Include="Assets\Plugins\TouchScript\Scripts\Gestures\LongPressGesture.cs" />
+     <Compile Include="Assets\Plugins\TouchScript\Scripts\Gestures\MetaGesture.cs" />
+     <Compile Include="Assets\Plugins\TouchScript\Scripts\Gestures\PinnedTransformGesture.cs" />
+     <Compile Include="Assets\Plugins\TouchScript\Scripts\Gestures\PressGesture.cs" />
+     <Compile Include="Assets\Plugins\TouchScript\Scripts\Gestures\ReleaseGesture.cs" />
+     <Compile Include="Assets\Plugins\TouchScript\Scripts\Gestures\ScreenTransformGesture.cs" />
+     <Compile Include="Assets\Plugins\TouchScript\Scripts\Gestures\TapGesture.cs" />
+     <Compile Include="Assets\Plugins\TouchScript\Scripts\Gestures\TransformGesture.cs" />
+     <Compile Include="Assets\Plugins\TouchScript\Scripts\Gestures\UI\UIGesture.cs" />
+     <Compile Include="Assets\Plugins\TouchScript\Scripts\Hit\HitTest.cs" />
+     <Compile Include="Assets\Plugins\TouchScript\Scripts\Hit\TouchHit.cs" />
+     <Compile Include="Assets\Plugins\TouchScript\Scripts\Hit\Untouchable.cs" />
+     <Compile Include="Assets\Plugins\TouchScript\Scripts\IDebuggable.cs" />
+     <Compile Include="Assets\Plugins\TouchScript\Scripts\IGestureManager.cs" />
+     <Compile Include="Assets\Plugins\TouchScript\Scripts\ITouchManager.cs" />
+     <Compile Include="Assets\Plugins\TouchScript\Scripts\InputSources\ICoordinatesRemapper.cs" />
+     <Compile Include="Assets\Plugins\TouchScript\Scripts\InputSources\IInputSource.cs" />
+     <Compile Include="Assets\Plugins\TouchScript\Scripts\InputSources\InputHandlers\MouseHandler.cs" />
+     <Compile Include="Assets\Plugins\TouchScript\Scripts\InputSources\InputHandlers\TouchHandler.cs" />
+     <Compile Include="Assets\Plugins\TouchScript\Scripts\InputSources\InputHandlers\WindowsTouchHandlers.cs" />
+     <Compile Include="Assets\Plugins\TouchScript\Scripts\InputSources\InputSource.cs" />
+     <Compile Include="Assets\Plugins\TouchScript\Scripts\InputSources\MobileInput.cs" />
+     <Compile Include="Assets\Plugins\TouchScript\Scripts\InputSources\MouseInput.cs" />
+     <Compile Include="Assets\Plugins\TouchScript\Scripts\InputSources\StandardInput.cs" />
+     <Compile Include="Assets\Plugins\TouchScript\Scripts\Layers\CameraLayer.cs" />
+     <Compile Include="Assets\Plugins\TouchScript\Scripts\Layers\CameraLayer2D.cs" />
+     <Compile Include="Assets\Plugins\TouchScript\Scripts\Layers\CameraLayerBase.cs" />
+     <Compile Include="Assets\Plugins\TouchScript\Scripts\Layers\FullscreenLayer.cs" />
+     <Compile Include="Assets\Plugins\TouchScript\Scripts\Layers\ILayerDelegate.cs" />
+     <Compile Include="Assets\Plugins\TouchScript\Scripts\Layers\ProjectionParams.cs" />
+     <Compile Include="Assets\Plugins\TouchScript\Scripts\Layers\TouchLayer.cs" />
+     <Compile Include="Assets\Plugins\TouchScript\Scripts\Layers\UILayer.cs" />
+     <Compile Include="Assets\Plugins\TouchScript\Scripts\Tags.cs" />
+     <Compile Include="Assets\Plugins\TouchScript\Scripts\TouchManager.cs" />
+     <Compile Include="Assets\Plugins\TouchScript\Scripts\TouchManagerInstance.cs" />
+     <Compile Include="Assets\Plugins\TouchScript\Scripts\TouchPoint.cs" />
+     <Compile Include="Assets\Plugins\TouchScript\Scripts\Utils\Attributes\NullToggleAttribute.cs" />
+     <Compile Include="Assets\Plugins\TouchScript\Scripts\Utils\Attributes\ToggleLeftAttribute.cs" />
+     <Compile Include="Assets\Plugins\TouchScript\Scripts\Utils\ClusterUtils.cs" />
+     <Compile Include="Assets\Plugins\TouchScript\Scripts\Utils\Debug\DebugHelper.cs" />
+     <Compile Include="Assets\Plugins\TouchScript\Scripts\Utils\Debug\GLDebug.cs" />
+     <Compile Include="Assets\Plugins\TouchScript\Scripts\Utils\EventHandlerExtensions.cs" />
+     <Compile Include="Assets\Plugins\TouchScript\Scripts\Utils\Geom\TwoD.cs" />
+     <Compile Include="Assets\Plugins\TouchScript\Scripts\Utils\ObjectPool.cs" />
+     <Compile Include="Assets\Plugins\TouchScript\Scripts\Utils\ProjectionUtils.cs" />
+     <Compile Include="Assets\Plugins\TouchScript\Scripts\Utils\TimedSequence.cs" />
+     <Compile Include="Assets\Plugins\TouchScript\Scripts\Utils\TouchUtils.cs" />
+     <Compile Include="Assets\Plugins\TouchScript\Scripts\Utils\TransformUtils.cs" />
+     <None Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BlendOneOne.shader" />
+     <None Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Shaders\NoiseEffectShaderRGB.shader" />
+     <None Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Shaders\_DepthOfField\SeparableWeightedBlurDof34.shader" />
+     <None Include="Assets\Plugins\TouchScript\Shaders\DebugDepthTest.shader" />
+     <None Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Shaders\ShowAlphaChannel.shader" />
+     <None Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Shaders\SunShaftsComposite.shader" />
+     <None Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Shaders\ColorCorrectionCurves.shader" />
+     <None Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Shaders\ScreenSpaceAmbientObscurance.shader" />
+     <None Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Shaders\_Antialiasing\NFAA.shader" />
+     <None Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Shaders\ScreenSpaceRaytrace.cginc" />
+     <None Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Shaders\_DepthOfField\TiltShiftHdrLensBlur.shader" />
+     <None Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\VignetteShader.shader" />
+     <None Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Shaders\_DepthOfField\DepthOfFieldScatter.shader" />
+     <None Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Shaders\MotionBlur.shader" />
+     <None Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\MobileBloom.shader" />
+     <None Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Shaders\Contrast Stretch\MinMaxReduction.shader" />
+     <None Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Shaders\_Antialiasing\SSAA.shader" />
+     <None Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Shaders\RadialBlur.shader" />
+     <None Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Shaders\_DepthOfField\DepthOfFieldDX11.shader" />
+     <None Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Shaders\ContrastComposite.shader" />
+     <None Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Shaders\_Antialiasing\FXAAPreset3.shader" />
+     <None Include="Assets\Plugins\TouchScript\license.txt" />
+     <None Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Shaders\FisheyeShader.shader" />
+     <None Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Shaders\Contrast Stretch\Apply.shader" />
+     <None Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Shaders\frag_ao.cginc" />
+     <None Include="Assets\Plugins\TouchScript\Shaders\DebugMultiplyDepthTest.shader" />
+     <None Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Shaders\_DepthOfField\DepthOfField34.shader" />
+     <None Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\MobileBlur.shader" />
+     <None Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Shaders\SSAOShader.shader" />
+     <None Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Shaders\ConvertDepth.shader" />
+     <None Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Shaders\ColorCorrectionCurvesSimple.shader" />
+     <None Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Shaders\NoiseEffectShaderYUV.shader" />
+     <None Include="Assets\Plugins\TouchScript\Shaders\DebugNoDepthTest.shader" />
+     <None Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Shaders\CreaseApply.shader" />
+     <None Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Shaders\ChromaticAberrationShader.shader" />
+     <None Include="Assets\Plugins\SquarePieStudios Tools\readme-singleton.txt" />
+     <None Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Shaders\GlobalFog.shader" />
+     <None Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Shaders\Contrast Stretch\Luminance.shader" />
+     <None Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Shaders\ColorCorrectionSelective.shader" />
+     <None Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Shaders\_DepthOfField\Bokeh34.shader" />
+     <None Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Shaders\CameraMotionBlurDX11.shader" />
+     <None Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\SeparableBlurPlus.shader" />
+     <None Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\MultiPassHollywoodFlares.shader" />
+     <None Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Shaders\BlurEffectConeTaps.shader" />
+     <None Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Shaders\CameraMotionBlur.shader" />
+     <None Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Shaders\_Antialiasing\DLAA.shader" />
+     <None Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Shaders\NoiseAndGrainDX11.shader" />
+     <None Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BrightPassFilter2.shader" />
+     <None Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Shaders\_DepthOfField\SeparableBlur.shader" />
+     <None Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Shaders\MotionBlurClear.shader" />
+     <None Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Shaders\ColorCorrectionEffect.shader" />
+     <None Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Shaders\GrayscaleEffect.shader" />
+     <None Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Shaders\SepiaToneEffect.shader" />
+     <None Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Shaders\TwirlEffect.shader" />
+     <None Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Shaders\VortexEffect.shader" />
+     <None Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Shaders\Contrast Stretch\Adaptation.shader" />
+     <None Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Shaders\NoiseAndGrain.shader" />
+     <None Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Shaders\VignettingShader.shader" />
+     <None Include="Assets\Plugins\TouchScript\Shaders\DebugMultiplyNoDepthTest.shader" />
+     <None Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Shaders\Tonemapper.shader" />
+     <None Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BrightPassFilter.shader" />
+     <None Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Shaders\_Antialiasing\FXAA2.shader" />
+     <None Include="Assets\Plugins\TouchScript\Examples\_misc\Shaders\UnlitColor.shader" />
+     <None Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Shaders\ColorCorrection3DLut.shader" />
+     <None Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\LensFlareCreate.shader" />
+     <None Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Shaders\EdgeDetectNormals.shader" />
+     <None Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Shaders\PrepareSunShaftsBlur.shader" />
+     <None Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\Blend.shader" />
+     <None Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Shaders\BlendModesOverlay.shader" />
+     <None Include="Assets\Plugins\TouchScript\Examples\_misc\Shaders\BorderDiffuse.shader" />
+     <None Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Shaders\SimpleClear.shader" />
+     <None Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Shaders\_Antialiasing\FXAA3Console.shader" />
+     <None Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Shaders\_Antialiasing\FXAAPreset2.shader" />
+     <None Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BlurAndFlares.shader" />
+     <None Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BlendForBloom.shader" />
+ <Reference Include="UnityEngine.Networking">
+ <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.UI">
+ <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
+ </Reference>
+ <Reference Include="OSCsharp">
+ <HintPath>/Users/Shared/Unity/SasRPG/Assets/Plugins/TouchScript/Modules/TUIO/Libraries/OSCsharp.dll</HintPath>
+ </Reference>
+ <Reference Include="TUIOsharp">
+ <HintPath>/Users/Shared/Unity/SasRPG/Assets/Plugins/TouchScript/Modules/TUIO/Libraries/TUIOsharp.dll</HintPath>
+ </Reference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  
+</Project>
