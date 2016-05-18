@@ -2,28 +2,11 @@
 using System.Collections.Generic;
 
 [ExecuteInEditMode]
-public class SasLayerRes : MonoBehaviour {
-
-	public enum Axis
-	{
-		X, Y, Z
-	};
+public class SasLayerRes : MonoBehaviour,  Sas.ILayerDeco<SasLayerData> {
 
 	private readonly List<GameObject> mObjMap = new List<GameObject>();
-	private SasLayerData mData = null;
 	private GameObject[,] mObjs = null;
 	private Transform mCachedTm = null;
-	private Axis mAxis = Axis.Y;
-
-	public Axis axis
-	{
-		get { return mAxis; }
-		set { 
-			if (mAxis == value) return;
-			mAxis = value;
-			Reposition ();
-		}
-	}
 
 	public Transform cachedTm{
 		get 
@@ -39,27 +22,16 @@ public class SasLayerRes : MonoBehaviour {
 		private set { RelaseObj (); mObjs = value; }
 	}
 
-	public Point size { get; private set; }
-	public SasLayerData data 
-	{
-		get { return mData; }
-		set { 
-			if (mData == value) return; 
-			mData = value;
-			size = value.size;
-			objs = new GameObject[size.x, size.y];
-			ApplyRes ();
-		}
-	}
+	public Point        size { get; private set; }
+	public SasLayerData data { get; set; }
 	
-	private void ApplyRes()
+	public void Apply()
 	{
+		size = data.size;
+		objs = new GameObject[size.x, size.y];
 		Rect[,] rects = data.rects;
 		for (int x = 0; x < size.x; ++x)
 			for (int y = 0; y < size.y; ++y) {
-				if (mObjs [x, y] != null)
-					SasPool<GameObject>.Instance.Dealloc (mObjs [x, y]);
-
 				int idxRes = data.GetIdxRes (new Point{ x = x, y = y });
 				mObjs[x,y] = SasPool<GameObject>.Instance.Alloc(
 					mObjMap[idxRes],
@@ -89,15 +61,14 @@ public class SasLayerRes : MonoBehaviour {
 
 		for (int x = 0; x < size.x; ++x)
 			for (int y = 0; y < size.y; ++y) {
-				mObjs[x,y].transform.localPosition = ConvertAreaToWorld(rects[x,y]);
+				if( null != mObjs[x,y] )
+					mObjs[x,y].transform.localPosition = ConvertAreaToWorld(rects[x,y]);
 			}
 	}
 
 	private Vector3 ConvertAreaToWorld(Rect rect) 
 	{
 		Vector2 vec2D = rect.center;
-		return axis == Axis.Y ? new Vector3 (vec2D.x, 0.0f, vec2D.y) :
-			axis == Axis.X ? new Vector3 (0.0f, vec2D.y, vec2D.x) : 
-			new Vector3(vec2D.x, vec2D.y);
+		return new Vector3 (vec2D.x, 0.0f, vec2D.y);
 	}
 }

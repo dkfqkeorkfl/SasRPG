@@ -45,16 +45,22 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\2. Preparation\Point.cs" />
+     <Compile Include="Assets\2. Preparation\Common\Point.cs" />
+     <Compile Include="Assets\2. Preparation\Common\SasExtension.cs" />
+     <Compile Include="Assets\2. Preparation\Common\SasMath.cs" />
+     <Compile Include="Assets\2. Preparation\Common\SasObjectPool.cs" />
+     <Compile Include="Assets\2. Preparation\Common\SasTile.cs" />
+     <Compile Include="Assets\2. Preparation\Common\SasUti.cs" />
+     <Compile Include="Assets\2. Preparation\SasBackend.cs" />
      <Compile Include="Assets\2. Preparation\SasCamera.cs" />
-     <Compile Include="Assets\2. Preparation\SasExtension.cs" />
+     <Compile Include="Assets\2. Preparation\SasCharacter.cs" />
+     <Compile Include="Assets\2. Preparation\SasContext.cs" />
+     <Compile Include="Assets\2. Preparation\SasDatas.cs" />
+     <Compile Include="Assets\2. Preparation\SasFantasyBag.cs" />
+     <Compile Include="Assets\2. Preparation\SasInterface.cs" />
      <Compile Include="Assets\2. Preparation\SasLayerActor.cs" />
      <Compile Include="Assets\2. Preparation\SasLayerData.cs" />
      <Compile Include="Assets\2. Preparation\SasLayerRes.cs" />
-     <Compile Include="Assets\2. Preparation\SasMath.cs" />
-     <Compile Include="Assets\2. Preparation\SasObjectPool.cs" />
-     <Compile Include="Assets\2. Preparation\SasTile.cs" />
-     <Compile Include="Assets\2. Preparation\SasUti.cs" />
      <None Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BlendOneOne.shader" />
      <None Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Shaders\NoiseEffectShaderRGB.shader" />
      <None Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Shaders\_DepthOfField\SeparableWeightedBlurDof34.shader" />
@@ -135,6 +141,9 @@
  </Reference>
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
+ </Reference>
+ <Reference Include="JsonFx.Json">
+ <HintPath>/Users/Shared/Unity/SasRPG/Assets/JsonFX/JsonFx.Json.dll</HintPath>
  </Reference>
  <Reference Include="OSCsharp">
  <HintPath>/Users/Shared/Unity/SasRPG/Assets/Plugins/TouchScript/Modules/TUIO/Libraries/OSCsharp.dll</HintPath>
