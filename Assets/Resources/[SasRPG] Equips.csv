@@ -1,0 +1,2 @@
+idx ( ushort ), capacity ( ushort ),name ( string ),desc ( string ),icon ( string ),part ( eParts ),hp ( int ),attack ( int ),attack speed(float),shield ( int ),cure ( int )
+1,1,sword,a item that can test,test,Weapon,0,15,1,0,0

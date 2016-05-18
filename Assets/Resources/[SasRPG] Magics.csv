@@ -1,0 +1,2 @@
+idx ( ushort ), capacity ( ushort ),name ( string ),desc ( string ),icon ( string ),type (eType),attack,attack speed,shield,cure,duration,cooldown
+1,1,cure,a item that can test,test,Protection,0,0,0,50,10,10

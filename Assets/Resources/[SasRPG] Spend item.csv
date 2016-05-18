@@ -1,0 +1,2 @@
+idx ( ushort ), capacity ( ushort ),name ( string ),desc ( string ),icon ( string ),attack ( int ),shield (int),cure ( int ),duration (float),cooldown ( float )
+1,10,hp cure,a item that can test,test,0,0,50,5,10
