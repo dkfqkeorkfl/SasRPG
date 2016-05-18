@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System;
 using Sas;
 
+[Serializable]
 public class SasTile
 {
 //	[UP_LEFT]   [UP]     [UP_RIGHT]
@@ -56,8 +57,8 @@ public class SasTile
 		}
 
 		public int count {
-			get { return SasUti.GetMaskVal (mVal, DEF_MASK_COUNT) >> ((int)eDirection.COUNT * DEF_MASK_OFFSET_SIZE); }
-			private set { mVal = SasUti.SetMaskVal (mVal, DEF_MASK_COUNT, value << ((int)eDirection.COUNT * DEF_MASK_OFFSET_SIZE)); }
+			get { return Sas.Uti.GetMaskVal (mVal, DEF_MASK_COUNT) >> ((int)eDirection.COUNT * DEF_MASK_OFFSET_SIZE); }
+			private set { mVal = Sas.Uti.SetMaskVal (mVal, DEF_MASK_COUNT, value << ((int)eDirection.COUNT * DEF_MASK_OFFSET_SIZE)); }
 		}
 
 		public void Push(BuilderArg arg)
@@ -69,7 +70,7 @@ public class SasTile
 			}
 
 			int mask = DEF_MASK << (DEF_MASK_OFFSET_SIZE * count);
-			mVal = SasUti.SetMaskVal( mVal, mask, (int)arg.mDirection << (DEF_MASK_OFFSET_SIZE * count));
+			mVal = Sas.Uti.SetMaskVal( mVal, mask, (int)arg.mDirection << (DEF_MASK_OFFSET_SIZE * count));
 			this.count = ++count;
 
 		}
@@ -83,7 +84,7 @@ public class SasTile
 		public int GetIdx(int idx)
 		{
 			int mask = DEF_MASK << (DEF_MASK_OFFSET_SIZE * idx);
-			return SasUti.GetMaskVal (mVal, mask) >> (DEF_MASK_OFFSET_SIZE * idx);
+			return Sas.Uti.GetMaskVal (mVal, mask) >> (DEF_MASK_OFFSET_SIZE * idx);
 		}
 
 		public IEnumerator<int> GetEnumerator()
@@ -125,6 +126,7 @@ public class SasTile
 	}
 }
 
+[Serializable]
 public class SasTile<T> : SasTile
 {
 	public struct Pos : IEnumerable<T>
@@ -199,15 +201,14 @@ public class SasTile<T> : SasTile
 
 	public static readonly SasTile<T> zero = new SasTile<T>();
 
-	private T[,]  mTile = null;
-	private Point mSize = Point.zero;
+	[SerializeField] private T[,]  mTile = null;
 
+	public Point size { get; private set; }
 	public T[,] tile { 
 		get { return mTile; }
 		set { 
 			mTile = value; 
-			mSize.x = tile.GetLength(0); // x
-			mSize.y = tile.GetLength(1); // y
+			size = new Point { x = tile.GetLength (0), y = tile.GetLength (1) };
 		}
 	}
 
@@ -219,10 +220,6 @@ public class SasTile<T> : SasTile
 	public T this[int x, int y] {
 		get { return tile[x, y]; }
 		set { tile[x, y] = value; }
-	}
-		
-	public Point size { 
-		get { return mSize; } 
 	}
 		
 	public SasTile() {}

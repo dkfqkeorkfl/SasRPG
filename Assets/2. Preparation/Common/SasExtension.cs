@@ -8,6 +8,53 @@ namespace Sas
 {
     public static class Extension
 	{
+		public static void Sort<T>(this IList<T> list, System.Comparison<T> comp)
+		{
+			var array = list as T[];
+			if (null != array) {
+				System.Array.Sort (array, comp);
+				return;
+			}
+
+			var vlist = list as List<T>;
+			vlist.Sort (comp);
+		}
+
+		public static T[,] To2DArraySured<T>(this T[,] a, int first, int second)
+		{
+			if( a.Rank == 2 && first == a.GetLength(0) && second == a.GetLength(1) )
+				return (T[,])a;
+
+			T[] array = a as T[];
+			T[,] rtn = new T[first, second];
+			int i = 0;
+			for (int x = 0; x < first; ++x)
+				for (int y = 0; y < second; ++y, ++i) {
+					if (i < array.Length)
+						rtn [x, y] = array[i];
+					else
+						return rtn;
+				}
+			return rtn;
+		}
+
+		public static bool Contain<T>(this LinkedList<T> list, Predicate<T> pred)
+		{
+			return list.Find (pred) != null;
+		}
+
+		public static LinkedListNode<T> Find<T>(this LinkedList<T> list, Predicate<T> pred)
+		{
+			LinkedListNode<T> node = list.First;
+
+			while(node != null){
+				if (pred (node.Value))
+					return node;
+
+				node = node.Next;
+			}
+			return null;
+		}
 		public static GameObject GetPrefabOrigin(this GameObject obj)
 		{
 			return PrefabUtility.GetPrefabObject (obj.transform) as GameObject;
@@ -30,10 +77,30 @@ namespace Sas
 				PrefabUtility.GetPrefabObject(obj.transform) == null;
 		}
 
-
-		public static bool Has<T>(this T item) where T : class
+		public static int BinarySearchForMatch<T>(this IList<T> list,
+			Func<T,int> comparer)
 		{
-			return item != null;
+			int min = 0;
+			int max = list.Count-1;
+
+			while (min <= max)
+			{
+				int mid = (min + max) / 2;
+				int comparison = comparer(list[mid]);
+				if (comparison == 0)
+				{
+					return mid;
+				}
+				if (comparison < 0)
+				{
+					min = mid+1;
+				}
+				else
+				{
+					max = mid-1;
+				}
+			}
+			return ~min;
 		}
 
 		public static T[] ToArray<T>(this IEnumerable<T> e, int size)
@@ -84,7 +151,7 @@ namespace Sas
 			Resize(list, sz, default(T) );
 		}
 
-		public static void ForeachSas<T>(this IList<T> aList, Action<T> aAction)
+		public static void Foreach<T>(this IList<T> aList, Action<T> aAction)
 		{
 			int count = aList.Count;
 			for (int i = 0; i < count; ++i) 

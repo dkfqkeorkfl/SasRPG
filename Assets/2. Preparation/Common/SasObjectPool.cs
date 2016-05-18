@@ -4,16 +4,6 @@ using SPStudios.Tools;
 using System;
 using Sas;
 
-public interface IPool<T> where T : class, new()
-{
-	T Alloc ();
-	T[] Alloc (int size);
-	void Dealloc (T item);
-
-	int capacity { get; set; }
-	int inactive { get;  }
-}
-
 public class SasPool<T> :Singleton< SasPool<T> > where T : class, new()
 {
 	private class Defulat : IPool<T>
@@ -127,7 +117,10 @@ public class SasPoolObject  : Singleton<SasPoolObject>, IPool<GameObject>
 		
 	public GameObject Alloc ()
 	{
-		return mCached.GetInstanceFromPool();
+		if (mCached == null)
+			return null;
+
+		return mCached.GetInstanceFromPool ();
 	}
 
 	public GameObject Alloc(GameObject obj, Transform parent, Vector3 pos, Quaternion rotation)
