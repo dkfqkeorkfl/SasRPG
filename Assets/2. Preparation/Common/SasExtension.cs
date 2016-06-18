@@ -55,9 +55,9 @@ namespace Sas
 			}
 			return null;
 		}
-		public static GameObject GetPrefabOrigin(this GameObject obj)
+		public static Transform GetPrefabOrigin(this GameObject obj)
 		{
-			return PrefabUtility.GetPrefabObject (obj.transform) as GameObject;
+			return PrefabUtility.GetPrefabObject (obj.transform) as Transform;
 		}
 		public static bool IsPrefabInstance(this GameObject obj)
 		{

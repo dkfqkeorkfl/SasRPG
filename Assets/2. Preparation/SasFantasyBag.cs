@@ -24,9 +24,11 @@ public class SasFantasyBag
 		public Sas.Data.ItemMagic magic   { get { return mMagic; } }
 		public Sas.Data.ItemSpend spend   { get { return mSpend; } }
 		public Sas.Data.ItemEquip equip   { get { return mEquip; } }
+
 		public int hp { 
 			get { return equip != null ? (equip.hp + (prefix != null ? prefix.bonusHP : 0)) : 0; }
 		}
+
 		public int attk {
 			get { 
 				if (equip != null)
@@ -38,6 +40,7 @@ public class SasFantasyBag
 				return 0;
 			}
 		}
+
 		public int shield {
 			get {
 				if (equip != null)
@@ -49,6 +52,7 @@ public class SasFantasyBag
 				return 0;
 			}
 		}
+
 		public int cure {
 			get {
 				if (equip != null)
@@ -60,6 +64,7 @@ public class SasFantasyBag
 				return 0;
 			}
 		}
+
 		public float attkSpeed {
 			get {
 				if (equip != null)
@@ -67,11 +72,13 @@ public class SasFantasyBag
 				return 0;
 			}
 		}
+
 		public int size    
 		{ 
 			get { return mSize; } 
 			set { mSize = value > mData.capacity ? mData.capacity : value; } 
 		}
+
 		public Sas.Data.DataItem data 
 		{ 
 			get { return mData; }
@@ -134,12 +141,14 @@ public class SasFantasyBag
 	public void Init(IEnumerable<InstancedItem> bag, IEnumerable<int> equips, IEnumerable<ushort> magics)
 	{
 		Release (this);
-		foreach (var item in bag) 
-			Push (item);
-		foreach (var equip in equips)
-			Spend (equip);
-		foreach (var magic in magics)
-			mMagics.Add (magic, Sas.DataSet.GetMagic (magic));
+
+		if(null != bag) 
+			foreach (var item in bag) Push (item);
+		if(null != equips) 
+			foreach (var equip in equips) Spend (equip);
+		
+		if(null != magics)
+			foreach (var magic in magics) mMagics.Add (magic, Sas.DataSet.GetMagic (magic));
 	}
 
 	public InstancedItem GetEquip(Sas.Data.ItemEquip.eParts part)
@@ -161,7 +170,7 @@ public class SasFantasyBag
 		
 		InstancedItem item = iter.Value;
 		if (null != item.equip) {
-			int index = (int)item.equip.parts;
+			int index = (int)item.equip.part;
 			InstancedItem equiped = mEquips [index];
 			mEquips [index] = mEquips [index] != item ? item : null;
 			onEquip (equiped, mEquips [index]);

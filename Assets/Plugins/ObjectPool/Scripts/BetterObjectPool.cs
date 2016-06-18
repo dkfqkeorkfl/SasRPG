@@ -6,7 +6,8 @@ using System.Collections.Generic;
 public class BetterObjectPool : MonoBehaviour {
 
 	public GameObject objectPrefab;
-
+	public GameObject ObjectPrefab { get { return objectPrefab; } set { objectPrefab = value; Init (); } }
+	public Object PrefabType { get; private set; }
 	// initialMax: How many objects should the pool initially contain?
 	public int initialMax = 100;
 	// minInPool: What is the smallest number of items this pool should contain at any point?
@@ -48,14 +49,27 @@ public class BetterObjectPool : MonoBehaviour {
 
 	// Use this for initialization
 	public virtual void Awake () {
+		if (null != ObjectPrefab)
+			Init ();
+	}
+
+	void Init()
+	{
 		activeObjectPoolParent = new GameObject ("ActiveObjectPool " + objectPrefab.name).transform;
 		inactiveObjectPoolParent = new GameObject ("InactiveObjectPool" + objectPrefab.name).transform;
+		activeObjectPoolParent.parent = transform;
+		inactiveObjectPoolParent.parent = transform;
 		inactiveObjectPoolParent.gameObject.SetActive (false);
+
 		InstantiateMultiple (Mathf.FloorToInt(initialMax * middleBound));
+		PrefabType = UnityEditor.PrefabUtility.GetPrefabObject (objectPrefab);
 	}
-	
+
 	// Update is called once per frame
 	public virtual void Update () {
+		if (null == ObjectPrefab)
+			return;
+		
 		UpdatePercentActive ();
 		if (percentActive > upperBound) {
 			StopAllCoroutines ();

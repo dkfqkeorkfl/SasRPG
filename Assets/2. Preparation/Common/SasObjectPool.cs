@@ -10,17 +10,20 @@ public class SasPool<T> :Singleton< SasPool<T> > where T : class, new()
 	{
 		const int DEF_DEFAULT_CAPACUTY = 20;
 
-		private int mCapacity = DEF_DEFAULT_CAPACUTY;
-
 		private readonly Stack<T> mInactive = new Stack<T>();
 
-		public int  capacity { get { return mCapacity; } set { mCapacity = value; } }
+		public int  capacity { get; set; }
 		public int  inactive { get { return mInactive.Count;      } }
 		public bool empty    { get { return mInactive.Count == 0; } }
 
+		public Defulat()
+		{
+			capacity = DEF_DEFAULT_CAPACUTY;
+		}
+
 		public T Alloc()
 		{
-			return empty ? default(T) : mInactive.Pop ();
+			return empty ? new T() : mInactive.Pop ();
 		}
 
 		public T[] Alloc(int size)
@@ -43,6 +46,8 @@ public class SasPool<T> :Singleton< SasPool<T> > where T : class, new()
 	private IPool<T> mAdapter = null;
 
 	public event Action<T> reset, release;
+	public int capacity { get { return adapter.capacity; } set { adapter.capacity = value; } }
+	public int inactive { get { return adapter.inactive; } }
 	public IPool<T> adapter 
 	{ 
 		get { return mAdapter != null ? mAdapter : DEFAULT_ADAPTER; }
@@ -101,7 +106,7 @@ public class SasPool<T> :Singleton< SasPool<T> > where T : class, new()
 	}
 }
 
-public class SasPoolObject  : Singleton<SasPoolObject>, IPool<GameObject>
+public class SasPoolObject  : IPool<GameObject>
 {
 	private readonly List<BetterObjectPool> mPools = new List<BetterObjectPool>();
 	private BetterObjectPool mCached = null;
@@ -109,12 +114,6 @@ public class SasPoolObject  : Singleton<SasPoolObject>, IPool<GameObject>
 	public int capacity { get { return mCached.initialMax; } set{ mCached.initialMax = value; } }
 	public int inactive { get { return mCached.inactive;} }
 
-	static SasPoolObject()
-	{
-		SasPool<GameObject>.Instance.adapter = Instance;
-		SasPool<GameObject>.Instance.release += (obj) => Instance.GetPool (obj);
-	}
-		
 	public GameObject Alloc ()
 	{
 		if (mCached == null)
@@ -125,6 +124,8 @@ public class SasPoolObject  : Singleton<SasPoolObject>, IPool<GameObject>
 
 	public GameObject Alloc(GameObject obj, Transform parent, Vector3 pos, Quaternion rotation)
 	{
+		if (null == obj)
+			return null;
 		BetterObjectPool pool = GetPool(obj);
 		if ( pool == null )
 			return null;
@@ -156,18 +157,17 @@ public class SasPoolObject  : Singleton<SasPoolObject>, IPool<GameObject>
 		
 	public BetterObjectPool GetPool(GameObject instance)
 	{
-		GameObject prefab = instance.GetPrefabOrigin ();
-		if (prefab == null)
-			return null;
-
-		if (mCached != null && prefab == mCached.objectPrefab )
+		var pbType = UnityEditor.PrefabUtility.GetPrefabObject (instance);
+		if (mCached != null && pbType == mCached.PrefabType )
 			return mCached;
-
-		int index = mPools.FindIndex ((val) => val.objectPrefab == prefab);
-		if ( index < mPools.Count == false) {
-			BetterObjectPool pool = new BetterObjectPool ();
-			pool.objectPrefab = prefab;
+		 
+		int index = mPools.FindIndex ((val) => val.PrefabType == pbType);
+		if ( index < 0 ) {
+			var obj = new GameObject (pbType.name + "Pool");
+			var pool = obj.AddComponent<BetterObjectPool> ();
+			pool.ObjectPrefab = instance;
 			mPools.Add (pool);
+			index = mPools.Count - 1;
 		} 
 
 		mCached = mPools [index];
@@ -178,14 +178,21 @@ public class SasPoolObject  : Singleton<SasPoolObject>, IPool<GameObject>
 	
 public static class SasPoolExtension
 {
+	private static readonly SasPoolObject mPoolObject = new SasPoolObject();
+	static SasPoolExtension()
+	{
+		SasPool<GameObject>.Instance.adapter = mPoolObject;
+		SasPool<GameObject>.Instance.release += (obj) => mPoolObject.GetPool (obj);
+	}
+
 	public static BetterObjectPool Ready(this SasPool<GameObject> pool, GameObject obj)
 	{
-		return SasPoolObject.Instance.GetPool (obj);
+		return mPoolObject.GetPool (obj);
 	}
 
 	public static bool Contain(this SasPool<GameObject> pool, GameObject obj)
 	{
-		return SasPoolObject.Instance.Contain (obj);
+		return mPoolObject.Contain (obj);
 	}
 	public static GameObject Alloc(this SasPool<GameObject> pool, GameObject obj, Transform parent)
 	{
@@ -205,7 +212,7 @@ public static class SasPoolExtension
 	}
 	private static GameObject Alloc(GameObject obj, Transform parent, Vector3 pos, Quaternion rotation)
 	{
-		GameObject pooled = SasPoolObject.Instance.Alloc (obj, parent, pos, rotation);
+		GameObject pooled = mPoolObject.Alloc (obj, parent, pos, rotation);
 		SasPool<GameObject>.Instance.Reset(pooled);
 		return pooled;
 	}

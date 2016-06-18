@@ -1,16 +1,21 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/2. Preparation/SasTile.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/2. Preparation/Editor/SasTileEditor.cs">
     <Files>
-      <File FileName="Assets/2. Preparation/SasTile.cs" Line="9" Column="3" />
-      <File FileName="Assets/2. Preparation/SasLayerData.cs" Line="6" Column="1" />
-      <File FileName="Assets/2. Preparation/SasExtension.cs" Line="4" Column="34" />
-      <File FileName="Assets/2. Preparation/Editor/SasLayerResEditor.cs" Line="5" Column="1" />
+      <File FileName="Assets/2. Preparation/SasBackend.cs" Line="51" Column="3" />
+      <File FileName="Assets/2. Preparation/SasLayerActor.cs" Line="102" Column="1" />
+      <File FileName="Assets/2. Preparation/Editor/SasTileEditor.cs" Line="12" Column="38" />
+      <File FileName="Assets/2. Preparation/Editor/SasLayerResEditor.cs" Line="205" Column="35" />
+      <File FileName="Assets/2. Preparation/SasCharacter.cs" Line="190" Column="19" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
-      <Breakpoint file="/Users/Shared/Unity/SasRPG/Assets/Plugins/SquarePieStudios Tools/Scripts/Tools/Singletons/MonoSingleton.cs" line="18" column="1" />
+      <Breakpoint file="/Users/Shared/Unity/SasRPG/Assets/2. Preparation/Editor/SasLayerResEditor.cs" line="183" column="1" />
+      <Breakpoint file="/Users/Shared/Unity/SasRPG/Assets/2. Preparation/Editor/SasLayerResEditor.cs" line="177" column="1" />
+      <Breakpoint file="/Users/Shared/Unity/SasRPG/Assets/2. Preparation/SasLayerActor.cs" line="152" column="1" />
+      <Breakpoint file="/Users/Shared/Unity/SasRPG/Assets/2. Preparation/SasLayerActor.cs" line="159" column="1" />
+      <Breakpoint file="/Users/Shared/Unity/SasRPG/Assets/2. Preparation/SasLayerActor.cs" line="103" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

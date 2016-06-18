@@ -152,6 +152,7 @@
      <None Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Shaders\ColorCorrection3DLut.shader" />
      <None Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\LensFlareCreate.shader" />
      <None Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Shaders\EdgeDetectNormals.shader" />
+     <None Include="Assets\Resources\unnamed.txt" />
      <None Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Shaders\PrepareSunShaftsBlur.shader" />
      <None Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\Blend.shader" />
      <None Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Shaders\BlendModesOverlay.shader" />

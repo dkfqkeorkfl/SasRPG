@@ -9,33 +9,31 @@ namespace Sas.Edit
 	public class SasLayerResEditor : Editor {
 
 		private SasLayerRes mLayerRes = null;
-		private bool mViewObj = true;
 
 		private bool mPoolExpand = true;
-		private readonly List<GameObject> mPoolObj = new List<GameObject>();
+		private readonly List<GameObject> mPoolObj = SasPool<List<GameObject>>.Instance.Alloc();
 
 		private bool mDataEdit = false;
 		private bool mDataExpand = true;
-		private readonly SasLayerData mDataLayer = new SasLayerData();
+		private readonly SasLayerData mLayerData = SasPool<SasLayerData>.Instance.Alloc();
+
+		private SasLayerActor.SerializableData mSerializedActor = SasPool<SasLayerActor.SerializableData>.Instance.Alloc();
 
 		int  mIdxRes = 0;
 		int  mIdxgroup;
 		bool mIsBlock = false;
-
+		string mFilepath = "unnamed.txt";
 
 		private void OnEnable()
 		{
 			mLayerRes = target as SasLayerRes;
-			mDataLayer.size = new Point{ x = 10, y = 10 };
+			mLayerData.size = new Point{ x = 10, y = 10 };
 			mPoolObj.Add (null);
 
-			var posData = mDataLayer.posTile;
-			int count = posData.count;
-			var empty = posData;
-			for (int i = 0; i < count; ++i) {
-				Debug.LogFormat ("dir/access {0}/{1}", 
-					posData.GetDir (i).ToString (), posData.GetPos (i,ref empty).ToString ());
-			}
+			mLayerRes.objMap = mPoolObj;
+			mLayerRes.data = mLayerData;
+
+			mSerializedActor.spawners = SasPool<List<SasActorSpawner.SerializableData>>.Instance.Alloc();
 		}
 
 		private void onDisable()
@@ -44,9 +42,17 @@ namespace Sas.Edit
 
 		public override void OnInspectorGUI()
 		{
-			EditorGUIUtility.labelWidth = 70.0f;
-
-			mPoolExpand = EditorGUILayout.Foldout (mPoolExpand, "Pool");
+			EditorGUIUtility.labelWidth = 55.0f;
+			EditorGUILayout.HelpBox ( 
+				"If you're starting in playing, The datas will appear as models", 
+				MessageType.Info);
+			var file = EditorGUILayout.ObjectField ("Load", null, typeof(TextAsset), false) as TextAsset;
+			if (null != file) {
+				Load (file);
+				if( Application.isPlaying ) mLayerRes.Apply ();
+			}
+ 
+			mPoolExpand = EditorGUILayout.Foldout (mPoolExpand, "Pool (Only can load files in Resources folder)");
 			if (mPoolExpand) {
 				int size = EditorGUILayout.IntField ("size", mPoolObj.Count);
 				if( size >= 1 )
@@ -70,7 +76,7 @@ namespace Sas.Edit
 			mDataExpand = EditorGUILayout.Foldout (mDataExpand, "Data");
 			if (mDataExpand) {
 				EditorGUI.indentLevel += 1;
-				Point size = mDataLayer.size;
+				Point size = mLayerData.size;
 
 				EditorGUILayout.BeginHorizontal ();
 				size.x = EditorGUILayout.IntField ("Width", size.x);
@@ -78,9 +84,9 @@ namespace Sas.Edit
 				EditorGUILayout.EndHorizontal ();
 				size.x = size.x < 1 ? 1 : size.x;
 				size.y = size.y < 1 ? 1 : size.y;
-				mDataLayer.size = size;
+				mLayerData.size = size;
 
-				mDataLayer.length = EditorGUILayout.Vector2Field ("Length", mDataLayer.length);
+				mLayerData.length = EditorGUILayout.Vector2Field ("Length", mLayerData.length);
 
 				{
 					mDataEdit = EditorGUILayout.BeginToggleGroup("Data Edit", mDataEdit); 
@@ -97,20 +103,37 @@ namespace Sas.Edit
 
 				EditorGUI.indentLevel -= 1;
 			}
+
+			EditorGUILayout.HelpBox ("The above button is Spawn Datas for Actor", MessageType.Info);
+			if (GUILayout.Button ("Open")) {
+				var window = EditorWindow.GetWindow(typeof(Sas.Edit.SpawnWindow)) as Sas.Edit.SpawnWindow;
+				window.data = mSerializedActor;
+			}
+
+			EditorGUILayout.HelpBox (
+				"File Path is Added To 'Resources/'. " +
+				"if you write File path - 'unnamed', it will be Resources/unnamed", 
+				MessageType.Info);
+			mFilepath = EditorGUILayout.TextField ("File Path", mFilepath);
+			if (GUILayout.Button ("Save Current Datas"))
+				Save("Resources/");
 		}
 
 		public void OnSceneGUI()
 		{
-			if (!mDataEdit)
-				return;
+			if (mDataEdit)
+				EditData ();
+		}
 
+		private void EditData()
+		{
 			Handles.BeginGUI();
 
 			Rect rc = new Rect (0.0f, 0.0f, Screen.width, Screen.height);
 			Handles.DrawSolidRectangleWithOutline (rc, Color.white, Color.white);
 
 			Handles.color = Color.black;
-			Point size = mDataLayer.size;
+			Point size = mLayerData.size;
 			float width = Screen.width / size.x;
 			float height = (Screen.height-40.0f) / size.y;
 			for (int x = 0; x < size.x; ++x)
@@ -131,17 +154,17 @@ namespace Sas.Edit
 					rc.min = new Vector2 ( x * width, y * height );
 					rc.max = new Vector2 ( rc.min.x + width, rc.min.y + height );
 					if (rc.Contains (mouse)) {
-						mDataLayer.SetBlock (pt, mIsBlock);
-						mDataLayer.SetIdxGroup (pt, mIdxgroup);
-						mDataLayer.SetIdxRes (pt, mIdxRes);
+						mLayerData.SetBlock (pt, mIsBlock);
+						mLayerData.SetIdxGroup (pt, mIdxgroup);
+						mLayerData.SetIdxRes (pt, mIdxRes);
 					}
 
-					if (mDataLayer.tile [x, y] == 0)
+					if (mLayerData.tile [x, y] == 0)
 						continue;
-					
-					int   res   = mDataLayer.GetIdxRes (pt);
-					int   group = mDataLayer.GetIdxGroup (pt);
-					bool  block = mDataLayer.IsBlock (pt);
+
+					int   res   = mLayerData.GetIdxRes (pt);
+					int   group = mLayerData.GetIdxGroup (pt);
+					bool  block = mLayerData.IsBlock (pt);
 
 					StringBuilder b = new StringBuilder();
 					b.Append (res);
@@ -162,6 +185,29 @@ namespace Sas.Edit
 			foreach (var obj in mLayerRes.objs) {
 				obj.SetActive (enable);
 			}
+		}
+
+		private void Load(TextAsset file)
+		{
+			mFilepath = AssetDatabase.GetAssetPath (file).Replace("Assets/Resources/","");
+			var data = JsonFx.Json.JsonReader.Deserialize<Sas.Protocols.Map> (file.text);
+			mLayerData.serialization = data.tile;
+			mPoolObj.Clear ();
+			var objs = data.bgs.ConvertAll( (path) => (GameObject)Resources.Load (path) );
+			mPoolObj.AddRange ( objs );
+			mSerializedActor = data.actor;
+		}
+
+		private void Save(string prefix)
+		{
+			var regex = new System.Text.RegularExpressions.Regex (@"Assets/Resources/(\w+).prefab");
+
+			var data = new Sas.Protocols.Map {
+				bgs = mPoolObj.ConvertAll ((obj) => regex.Match(AssetDatabase.GetAssetPath (obj)).Groups[1].Value ),
+				tile = mLayerData.serialization,
+				actor = mSerializedActor
+			};
+			Uti.SaveJson (prefix+mFilepath, data);
 		}
 
 	}

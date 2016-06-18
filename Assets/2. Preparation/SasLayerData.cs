@@ -7,7 +7,7 @@ using System;
 [Serializable]
 public class SasLayerData
 {
-	public class SeirializableData
+	public class SerializableData
 	{
 		public float  lengthX = 0, lengthY = 0;
 		public int    dimeX = 0, dimeY = 0;
@@ -36,10 +36,10 @@ public class SasLayerData
 	private Vector2 mLength = Vector2.one;
 	private SasTile<int> mTile = SasTile<int>.zero;
 
-	public SeirializableData serialization
+	public SerializableData serialization
 	{
 		get { 
-			return new SeirializableData { 
+			return new SerializableData { 
 				lengthX = mLength.x, lengthY = mLength.y, 
 				dimeX = size.x, dimeY = size.y,
 				datas = tile }; 

@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\2. Preparation\Common\Point.cs" />
+     <Compile Include="Assets\2. Preparation\Common\SasDuration.cs" />
      <Compile Include="Assets\2. Preparation\Common\SasExtension.cs" />
      <Compile Include="Assets\2. Preparation\Common\SasMath.cs" />
      <Compile Include="Assets\2. Preparation\Common\SasObjectPool.cs" />
@@ -57,6 +58,7 @@
      <Compile Include="Assets\2. Preparation\SasContext.cs" />
      <Compile Include="Assets\2. Preparation\SasDatas.cs" />
      <Compile Include="Assets\2. Preparation\SasFantasyBag.cs" />
+     <Compile Include="Assets\2. Preparation\SasIOProtocols.cs" />
      <Compile Include="Assets\2. Preparation\SasInterface.cs" />
      <Compile Include="Assets\2. Preparation\SasLayerActor.cs" />
      <Compile Include="Assets\2. Preparation\SasLayerData.cs" />
@@ -127,6 +129,7 @@
      <None Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Shaders\ColorCorrection3DLut.shader" />
      <None Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\LensFlareCreate.shader" />
      <None Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Shaders\EdgeDetectNormals.shader" />
+     <None Include="Assets\Resources\unnamed.txt" />
      <None Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Shaders\PrepareSunShaftsBlur.shader" />
      <None Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\Blend.shader" />
      <None Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Shaders\BlendModesOverlay.shader" />

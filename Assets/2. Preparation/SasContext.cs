@@ -7,5 +7,4 @@ public class SasContext : SPStudios.Tools.Singleton<SasContext> {
 
 	private readonly SasActorData mActorPlayer = new SasActorData();
 
-
 }

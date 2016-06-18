@@ -1,11 +1,29 @@
 ﻿using UnityEngine;
 using System.Collections;
 using Sas;
+using JAB.CSV;
 
 namespace Sas
 {
 	public static class Uti
 	{
+		public static System.Collections.Generic.List<T> ConvertCSVToList<T>(string str)
+		{
+			var rows = CsvParser2.Parse (str);
+			int size = rows.GetLength (0)-1;
+			var datas = new System.Collections.Generic.List<T> ();
+			datas.Resize (size);
+			for (int i = 0; i < size; ++i)
+				datas[i] = rows [i+1].ToObj<T> ();
+
+			return datas;
+		}
+
+		public static Detail.Duration<T> MakeDuration<T>(System.Action<T> action, T _old, T _new)
+		{
+			return new Detail.Duration<T> (action, _old, _new);
+		}
+
 		public static bool SaveBin(string filepath, object obj)
 		{
 			using (var file = System.IO.File.Create (filepath)) {
@@ -26,9 +44,13 @@ namespace Sas
 
 		public static bool SaveJson(string filepath, object obj)
 		{
-			using ( var file = System.IO.File.CreateText (filepath) ) {
-				string serialization = JsonFx.Json.JsonWriter.Serialize (obj);
-				file.Write (serialization);
+			string prefix = "Assets/";
+			using ( var file = System.IO.File.CreateText (prefix+filepath) ) {
+				JsonFx.Json.JsonWriterSettings settings = new JsonFx.Json.JsonWriterSettings();
+				settings.PrettyPrint = true;
+				JsonFx.Json.JsonWriter jw = new JsonFx.Json.JsonWriter (file,settings);
+				jw.Write (obj);
+				UnityEditor.AssetDatabase.Refresh ();
 			}
 			return true;
 		}

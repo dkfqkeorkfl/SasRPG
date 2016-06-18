@@ -14,7 +14,7 @@ public class SasCharacter
 	public DataChar cur         { get; private set; }
 	public DataChar next        { get; private set; }
 	public bool     hasNext     { get { return next != null; } }
-	public uint     expRequired { get { return hasNext ? 0 : next.exp - exp; } }
+	public uint     expRequired { get { return hasNext ? next.exp - exp : 0; } }
 	public ushort   character   { 
 		get { return mCharacter; }
 		set {
@@ -93,7 +93,7 @@ public class SasActorData
 	} // end buf
 
 
-	private int mSerial = 0;
+	private uint mSerial = 0;
 	private int mGroup = 0;
 
 	private SasTile<int>.Pos mPt;
@@ -112,7 +112,7 @@ public class SasActorData
 	public event System.Action<Sas.Data.ItemMagic> onLearn 
 	{ add { mBag.onLearn += value; } remove { mBag.onLearn -= value; } }
 
-	public int           serial   { get { return mSerial; } }
+	public uint          serial   { get { return mSerial; } }
 	public string        resource { get { return mChar.resource; } }
 
 	public SasTile<int>.Pos pt     { get { return mPt; }       set { mPt = value; } }
@@ -179,8 +179,10 @@ public class SasActorData
 		};
 	}
 
-	public void Init(int serial, ushort character, ushort level, uint exp, IEnumerable<Buf> bufs, 
-		IEnumerable<SasFantasyBag.InstancedItem> bag, IEnumerable<int> equips, IEnumerable<ushort> magics)
+	public void Init(uint serial, ushort character, ushort level, uint exp = 0, 
+		IEnumerable<Buf> bufs = null, 
+		IEnumerable<SasFantasyBag.InstancedItem> bag = null, 
+		IEnumerable<int> equips = null, IEnumerable<ushort> magics = null)
 	{
 		this.mSerial = serial;
 		mChar.character = character;
@@ -190,11 +192,13 @@ public class SasActorData
 		this.bag.Init (bag, equips, magics);
 
 		ClearBuf ();
-		foreach(var buf in bufs)
-		{
-			mBufs.AddLast (buf);
-			onBuf (buf, true);
+		if (null != bufs) {
+			foreach(var buf in bufs){
+				mBufs.AddLast (buf);
+				onBuf (buf, true);
+			}
 		}
+
 	}
 
 	public void AddBuf(int operation, Sas.Data.DataItem item)
@@ -228,5 +232,10 @@ public class SasActorData
 			iter.Value = null;
 			iter = iter.Next;
 		}
+	}
+
+	public static uint MakeSerial()
+	{
+		return (uint)DateTime.Now.GetHashCode ();
 	}
 }
