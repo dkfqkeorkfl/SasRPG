@@ -54,6 +54,12 @@ public class SasCharacter
 	public int    shield      { get { return cur.shield; } }
 	public int    cure        { get { return cur.cure; } }
 	public float  attackSpeed { get { return cur.attackSpeed; } }
+
+	void Init(ushort level, uint exp)
+	{
+		this.level = level;
+		this.exp = exp;
+	}
 }
 
 public class SasActorData
@@ -94,11 +100,6 @@ public class SasActorData
 
 
 	private uint mSerial = 0;
-	private int mGroup = 0;
-
-	private SasTile<int>.Pos mPt;
-	private Vector2  mOffset;
-	private int mCurHP = 0;
 	private readonly SasCharacter    mChar = new SasCharacter();
 	private readonly SasFantasyBag   mBag  = new SasFantasyBag();
 	private readonly LinkedList<Buf> mBufs = new LinkedList<Buf> ();
@@ -115,14 +116,14 @@ public class SasActorData
 	public uint          serial   { get { return mSerial; } }
 	public string        resource { get { return mChar.resource; } }
 
-	public SasTile<int>.Pos pt     { get { return mPt; }       set { mPt = value; } }
-	public Vector2          offset { get { return mOffset; }   set { mOffset = value; } }
-	public uint             exp    { get { return mChar.exp; } set { mChar.exp = value; } }
-	public int              group  { get { return mGroup; }    set { mGroup = value; } }
-	public int              curHP  { get { return mCurHP; } }
-	public SasFantasyBag    bag    { get { return mBag; } }
+	public Point         apprearance { get; set; }
+	public Vector2       apprearance_offset { get; set; }
+	public uint          exp    { get { return mChar.exp; } set { mChar.exp = value; } }
+	public int           group  { get; set; }
+	public int           curHP  { get; private set; }
+	public SasFantasyBag bag    { get { return mBag; } }
 
-	public bool isDead { get { return curHP == 0; } }
+	public bool          isDead { get { return curHP == 0; } }
 
 	public int   totalHP        { get { return baseHP + bonusHP; } }
 	public int   totalCure      { get { return baseCure + bonusCure; } }
@@ -187,7 +188,7 @@ public class SasActorData
 		this.mSerial = serial;
 		mChar.character = character;
 		mChar.level = level;
-		mChar.exp = exp;
+		this.exp = exp;
 
 		this.bag.Init (bag, equips, magics);
 

@@ -131,48 +131,42 @@ public class SasTile<T> : SasTile
 {
 	public struct Pos : IEnumerable<T>
 	{
-		private SasTile<T> mTile;
-		private Point   mOrigin;
-		private PosAtti mBuilder;
-
-		public Point origin { get { return mOrigin; } }
-		public int   count  { get { return mBuilder.count; } }
+		private SasTile<T> tile { get; set; }
+		public PosAtti builder { get; private set; }
+		public Point pt { get; private set; }
+		public int   count  { get { return builder.count; } }
+		public bool invalid { get { return tile == null; } }
 
 		public Pos(SasTile<T> tile, Point pos, PosAtti builder /* = POS_ATTI_DIRECTION_ALL */ ) 
 		{
-			mTile = tile;
-			mOrigin = pos;
-			mBuilder = builder;
+			this.tile = tile;
+			this.pt = pos;
+			this.builder = builder;
 		}
 
 		public void Move(eDirection dir)
 		{
-			mOrigin += RESERVE_POINT [(int)dir];
+			pt += RESERVE_POINT [(int)dir];
 		}
 
 		public bool IsPos(eDirection dir)
 		{
-			Point pt = mOrigin + RESERVE_POINT [(int)dir];
-			return mTile.size.Contain (pt);
+			Point pt = this.pt + RESERVE_POINT [(int)dir];
+			return tile.size.Contain (pt);
 		}
 
 		public eDirection GetDir (int idx)
 		{
-			return idx < mBuilder.count ? (eDirection)mBuilder.GetIdx (idx) : eDirection.COUNT;
+			return idx < builder.count ? (eDirection)builder.GetIdx (idx) : eDirection.COUNT;
 		}
-
-		public Pos GetPos(eDirection dir)
+				
+		public eDirection TryNext (int idx, out Pos rtn)
 		{
-			Point pt = mOrigin + RESERVE_POINT [(int)dir];
-			return new Pos (mTile, pt, mBuilder);
-		}
-			
-		public eDirection GetPos (int idx, ref Pos rtn)
-		{
-			if (!(idx < mBuilder.count)) 
+			rtn = new Pos (null, Point.zero, builder);
+			if (!(idx < builder.count)) 
 				return eDirection.COUNT;
 
-			eDirection dir = (eDirection)mBuilder.GetIdx (idx);
+			eDirection dir = (eDirection)builder.GetIdx (idx);
 			if (!IsPos(dir))
 				return eDirection.COUNT;
 
@@ -182,20 +176,26 @@ public class SasTile<T> : SasTile
 
 		public IEnumerator<T> GetEnumerator()
 		{
-			yield return mTile [mOrigin.x, mOrigin.y];
+			yield return tile [pt.x, pt.y];
 
-			int count = mBuilder.count;
+			int count = builder.count;
 			for (int i = 0; i < count; ++i) {
-				Point pt = mOrigin + RESERVE_POINT [mBuilder.GetIdx (i)];
-				if (!mTile.size.Contain (pt)) continue;
-				yield return mTile [pt.x, pt.y];
+				Point pt = this.pt + RESERVE_POINT [builder.GetIdx (i)];
+				if (!tile.size.Contain (pt)) continue;
+				yield return tile [pt.x, pt.y];
 			}
 
 		}
-
+			
 		System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
 		{
 			return GetEnumerator();
+		}
+
+		private Pos GetPos(eDirection dir)
+		{
+			Point pt = this.pt + RESERVE_POINT [(int)dir];
+			return new Pos (tile, pt, builder);
 		}
 	}
 

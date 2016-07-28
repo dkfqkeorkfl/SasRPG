@@ -4,6 +4,26 @@ using System.Linq;
 using System.Collections.Generic;
 using UnityEditor;
 
+public static class ExtensionGlobal
+{
+	public static System.Action<T> MakeRelease<T> (this SasPool<T> p) where T : class, new()
+	{
+		System.Action<T> ret = (data) => {
+			var t = data.GetType();
+			var fields = t.GetFields();
+			for(int i = 0; i < fields.Length; ++i)
+			{
+				var f = fields[i];
+				var ft = f.FieldType;
+				object defaultValue = ft.IsValueType ? Activator.CreateInstance(ft) : null;
+				f.SetValue(data,defaultValue);
+			}	
+		};
+
+		return ret;
+	}
+}
+
 namespace Sas
 {
     public static class Extension

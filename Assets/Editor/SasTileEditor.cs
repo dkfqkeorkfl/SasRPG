@@ -12,11 +12,6 @@ namespace Sas.Edit
 
 		public SasLayerActor.SerializableData data { get; set; }
 
-
-		private void Awake()
-		{
-		}
-
 		private void OnSelectionChange()
 		{
 			this.Close ();
@@ -66,7 +61,7 @@ namespace Sas.Edit
 
 			spawner.res = (ushort)EditorGUILayout.IntField ("Resource", (int)spawner.res);
 			spawner.ratio = EditorGUILayout.Slider ("Ratio", spawner.ratio, 0.0f, 1.0f);
-			spawner.default_level = (ushort)EditorGUILayout.IntField ("Level", (int)spawner.default_level);
+			//spawner.default_level = (ushort)EditorGUILayout.IntField ("Level", (int)spawner.default_level);
 
 			{
 				// Levels
@@ -131,11 +126,13 @@ namespace Sas.Edit
 
 					EditorGUILayout.EndVertical ();
 				}
+				EditorGUILayout.EndHorizontal ();
 			}
-			EditorGUILayout.EndHorizontal ();
-		}
-	}
-}
+
+
+		} // <//OnGUI>
+	} // </SpawnWindow>
+} // </Sas.Edit>
 //namespace Sas.Edit
 //{
 //	[CustomEditor(typeof (SasTile))]

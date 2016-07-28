@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEditor;
 using System.Text;
+using Sas;
 
 namespace Sas.Edit
 {
 	[CustomEditor(typeof (SasLayerRes))]
 	public class SasLayerResEditor : Editor {
-
+		
 		private SasLayerRes mLayerRes = null;
 
 		private bool mPoolExpand = true;

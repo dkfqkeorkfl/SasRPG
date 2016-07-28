@@ -45,9 +45,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\2. Preparation\Editor\SasEditorUti.cs" />
-     <Compile Include="Assets\2. Preparation\Editor\SasLayerResEditor.cs" />
-     <Compile Include="Assets\2. Preparation\Editor\SasTileEditor.cs" />
+     <Compile Include="Assets\Editor\SasEditorUti.cs" />
+     <Compile Include="Assets\Editor\SasLayerResEditor.cs" />
+     <Compile Include="Assets\Editor\SasTileEditor.cs" />
      <None Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BlendOneOne.shader" />
      <None Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Shaders\NoiseEffectShaderRGB.shader" />
      <None Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Shaders\_DepthOfField\SeparableWeightedBlurDof34.shader" />
@@ -182,8 +182,6 @@
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
       <Project>{F8A80E44-0B6C-654A-A833-353845B1D685}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
-    <ProjectReference Include="Assembly-CSharp.csproj">
-      <Project>{8A6A6EC5-20C7-758F-6702-0EFCC6DC61E3}</Project>      <Name>Assembly-CSharp</Name>    </ProjectReference>
     <ProjectReference Include="Assembly-CSharp-Editor-firstpass.csproj">
       <Project>{C885404C-6B60-64B4-C4AA-E9C51634D3CD}</Project>      <Name>Assembly-CSharp-Editor-firstpass</Name>    </ProjectReference>
   </ItemGroup>

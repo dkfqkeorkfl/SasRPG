@@ -4,122 +4,6 @@ using Sas;
 using Sas.Data;
 using System;
 
-public class SasActor : MonoBehaviour
-{
-	private SasActorData mData = null;
-	private Transform mCachedTm = null;
-	private Animator mAnimator = null;
-	public uint serial { get { return null != data ? data.serial : 0; } }
-	public SasLayerActor layer { get; private set; }
-	public Transform cachedTm { 
-		get { 
-			if( null == mCachedTm ) mCachedTm = transform; 
-			return mCachedTm; 
-		}
-	}
-
-	public SasActorData data 
-	{ 
-		get { return mData; }
-		set {
-			mData = value;
-			layer = value != null ? cachedTm.GetComponentInParent<SasLayerActor> () : null;
-		}
-	}
-
-	static SasActor()
-	{
-		SasPool<GameObject>.Instance.release += Release;
-	}
-
-	public static void Release(GameObject obj)
-	{
-		SasActor actor = obj.GetComponent<SasActor> ();
-		if (actor == null)
-			return;
-
-		if (null != actor.data) {
-			SasPool<SasActorData>.Instance.Dealloc (actor.data);
-			actor.data = null;
-		}
-
-		obj.gameObject.SetActive (false);
-	}
-}
-
-public class SasActorSpawner
-{
-	public class SerializableData
-	{
-		public ushort res;
-		public float  ratio;
-		public ushort default_level;
-		public List<Ratio> items;
-		public List<Ratio> levels;
-	}
-
-	public class Ratio
-	{
-		public ushort idx;
-		public float ratio;
-		public int size;
-	}
-		
-	public ushort idxRes { get; set; }
-	public float  ratio  { get; set; }
-
-	public ushort leveld { get; set; } // level default
-	public List< Ratio > items { get; set; }
-	public List< Ratio > levels { get; set; }
-	public SerializableData serialize
-	{
-		get { 
-			var rtn = SasPool<SerializableData>.Instance.Alloc();
-			rtn.res = this.idxRes;
-			rtn.ratio = this.ratio;
-			rtn.default_level = this.leveld;
-			rtn.items = this.items;
-			rtn.levels = this.levels;
-			return rtn;
-		}
-
-		set {
-			this.idxRes = value.res;
-			this.ratio = value.ratio;
-			this.leveld = value.default_level;
-			this.items = value.items;
-			this.levels = value.levels;
-			SasPool<SerializableData>.Instance.Dealloc (value);
-		}
-	}
-
-	public SasActorData assigned { get; private set; }
-	public bool TryAssign()
-	{
-		if (UnityEngine.Random.value < ratio == false)
-			return false;
-
-		assigned = SasPool<SasActorData>.Instance.Alloc();
-		var instanced = new LinkedList<SasFantasyBag.InstancedItem> ();
-
-		for (int i = 0; i < items.Count; ++i)
-			if (items [i].ratio < UnityEngine.Random.value) {
-				var item = SasPool<SasFantasyBag.InstancedItem>.Instance.Alloc ();
-				item.data = Sas.DataSet.GetItem (items [i].idx);
-				item.size = items [i].size;
-				item.created = DateTime.Now;
-				instanced.AddLast (item);
-			}
-		var level = levels.Find ((val) => { return val.ratio < UnityEngine.Random.value; });
-		assigned.Init (
-			SasActorData.MakeSerial (), 
-			idxRes, level != null ? level.idx : leveld, 0,
-			null, instanced);
-
-		return true;
-	}
-}
-
 public class SasLayerActor : MonoBehaviour, ILayerDeco<SasLayerData>
 {
 	public class SerializableData
@@ -152,7 +36,6 @@ public class SasLayerActor : MonoBehaviour, ILayerDeco<SasLayerData>
 
 	public List<SasActorSpawner> spawners { get; set; }
 	public float timeSpawn { get; set; }
-
 	public float height    { get; set; }
 	public Transform cachedTm { 
 		get { 
@@ -209,10 +92,11 @@ public class SasLayerActor : MonoBehaviour, ILayerDeco<SasLayerData>
 			return null;
 		}
 
-		Vector2 pos = data.rects [adata.pt.origin.x, adata.pt.origin.y].center + adata.offset;
+		Vector2 pos = data.rects [adata.apprearance.x, adata.apprearance.y].center + adata.apprearance_offset;
 		Vector3 vec = new Vector3 (pos.x, height, pos.y);
 		GameObject prefab = (GameObject)Resources.Load (adata.resource);
 		GameObject instanced = SasPool<GameObject>.Instance.Alloc (prefab, cachedTm, vec);
+
 		instanced.SetActive (true);
 		SasActor actor = instanced.GetComponentExactly<SasActor> ();
 		actor.data = adata;
@@ -247,8 +131,8 @@ public class SasLayerActor : MonoBehaviour, ILayerDeco<SasLayerData>
 		StartCoroutine (Spawn());
 		var iter = actors.First;
 		while (iter != null) {
-			Point origin = iter.Value.data.pt.origin;
-			Vector2 pos = data.rects [origin.x, origin.y].center + iter.Value.data.offset;
+			Point origin = iter.Value.pos.pt;
+			Vector2 pos = data.rects [origin.x, origin.y].center + iter.Value.offset;
 			Vector3 vec = new Vector3 (pos.x, height, pos.y);
 			iter.Value.cachedTm.localPosition = vec;
 

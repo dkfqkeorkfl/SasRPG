@@ -85,9 +85,7 @@ public class SasPool<T> :Singleton< SasPool<T> > where T : class, new()
 		foreach (var item in items)
 			Dealloc (item);
 	}
-
-
-
+		
 	public void Reset(T item)   
 	{ 
 		if (reset != null) reset (item); 
@@ -157,7 +155,8 @@ public class SasPoolObject  : IPool<GameObject>
 		
 	public BetterObjectPool GetPool(GameObject instance)
 	{
-		var pbType = UnityEditor.PrefabUtility.GetPrefabObject (instance);
+		var pbType = UnityEditor.PrefabUtility.GetPrefabParent (instance);
+		pbType = pbType == null ? UnityEditor.PrefabUtility.GetPrefabObject (instance) : pbType;
 		if (mCached != null && pbType == mCached.PrefabType )
 			return mCached;
 		 
@@ -183,6 +182,12 @@ public static class SasPoolExtension
 	{
 		SasPool<GameObject>.Instance.adapter = mPoolObject;
 		SasPool<GameObject>.Instance.release += (obj) => mPoolObject.GetPool (obj);
+		SasPool<GameObject>.Instance.reset += (obj) => {
+			obj.SendMessage ("OnAlloc",SendMessageOptions.DontRequireReceiver);
+		};
+		SasPool<GameObject>.Instance.release += (obj) => {
+			obj.SendMessage ("OnDealloc",SendMessageOptions.DontRequireReceiver);
+		};
 	}
 
 	public static BetterObjectPool Ready(this SasPool<GameObject> pool, GameObject obj)

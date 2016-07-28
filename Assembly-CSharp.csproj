@@ -52,6 +52,7 @@
      <Compile Include="Assets\2. Preparation\Common\SasObjectPool.cs" />
      <Compile Include="Assets\2. Preparation\Common\SasTile.cs" />
      <Compile Include="Assets\2. Preparation\Common\SasUti.cs" />
+     <Compile Include="Assets\2. Preparation\SasActor.cs" />
      <Compile Include="Assets\2. Preparation\SasBackend.cs" />
      <Compile Include="Assets\2. Preparation\SasCamera.cs" />
      <Compile Include="Assets\2. Preparation\SasCharacter.cs" />
@@ -63,6 +64,7 @@
      <Compile Include="Assets\2. Preparation\SasLayerActor.cs" />
      <Compile Include="Assets\2. Preparation\SasLayerData.cs" />
      <Compile Include="Assets\2. Preparation\SasLayerRes.cs" />
+     <Compile Include="Assets\2. Preparation\SasNavigator.cs" />
      <None Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BlendOneOne.shader" />
      <None Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Shaders\NoiseEffectShaderRGB.shader" />
      <None Include="Assets\Plugins\ObjectPool\Standard Assets\Effects\ImageEffects\Shaders\_DepthOfField\SeparableWeightedBlurDof34.shader" />

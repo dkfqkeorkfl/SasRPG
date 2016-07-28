@@ -8,14 +8,14 @@ namespace Sas.Data
 		[CSVPositionAttribute(0)] public ushort idx { get; set; }
 		[CSVPositionAttribute(1)] public ushort level { get; set; }
 		[CSVPositionAttribute(2)] public uint   exp { get; set; }
+		[CSVPositionAttribute(3)] public int    speed { get; set; }
+		[CSVPositionAttribute(4)] public int    hp { get; set; }
+		[CSVPositionAttribute(5)] public int    attack { get; set; }
+		[CSVPositionAttribute(6)] public float  attackSpeed { get; set; }
+		[CSVPositionAttribute(7)] public int    shield { get; set; }
+		[CSVPositionAttribute(8)] public int    cure { get; set; }
 
-		[CSVPositionAttribute(3)] public int    hp { get; set; }
-		[CSVPositionAttribute(4)] public int    attack { get; set; }
-		[CSVPositionAttribute(5)] public float  attackSpeed { get; set; }
-		[CSVPositionAttribute(6)] public int    shield { get; set; }
-		[CSVPositionAttribute(7)] public int    cure { get; set; }
-
-		[CSVPositionAttribute(8)] public string res { get; set; }
+		[CSVPositionAttribute(9)] public string res { get; set; }
 
 		public int key { get { return MakeKey (idx, level); } }
 
