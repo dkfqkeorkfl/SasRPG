@@ -138,7 +138,7 @@ public class BetterObjectPool : MonoBehaviour {
 
 	// Instantiates, deactivates, and adds one to the pool
 	private void InstantiateOne () {
-		GameObject newObject = Instantiate (objectPrefab) as GameObject;
+		GameObject newObject = UnityEditor.PrefabUtility.InstantiatePrefab(objectPrefab) as GameObject;
 //		newObject.SetActive (false);
 		inactiveObjectPool.Add (newObject);
 		newObject.transform.parent = inactiveObjectPoolParent;

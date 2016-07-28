@@ -1,21 +1,21 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/2. Preparation/Editor/SasTileEditor.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/2. Preparation/SasFantasyBag.cs">
     <Files>
-      <File FileName="Assets/2. Preparation/SasBackend.cs" Line="51" Column="3" />
-      <File FileName="Assets/2. Preparation/SasLayerActor.cs" Line="102" Column="1" />
-      <File FileName="Assets/2. Preparation/Editor/SasTileEditor.cs" Line="12" Column="38" />
-      <File FileName="Assets/2. Preparation/Editor/SasLayerResEditor.cs" Line="205" Column="35" />
-      <File FileName="Assets/2. Preparation/SasCharacter.cs" Line="190" Column="19" />
+      <File FileName="Assets/2. Preparation/SasActor.cs" Line="1" Column="1" />
+      <File FileName="Assets/2. Preparation/SasInterface.cs" Line="1" Column="1" />
+      <File FileName="Assets/2. Preparation/SasFantasyBag.cs" Line="26" Column="63" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
-      <Breakpoint file="/Users/Shared/Unity/SasRPG/Assets/2. Preparation/Editor/SasLayerResEditor.cs" line="183" column="1" />
-      <Breakpoint file="/Users/Shared/Unity/SasRPG/Assets/2. Preparation/Editor/SasLayerResEditor.cs" line="177" column="1" />
-      <Breakpoint file="/Users/Shared/Unity/SasRPG/Assets/2. Preparation/SasLayerActor.cs" line="152" column="1" />
-      <Breakpoint file="/Users/Shared/Unity/SasRPG/Assets/2. Preparation/SasLayerActor.cs" line="159" column="1" />
-      <Breakpoint file="/Users/Shared/Unity/SasRPG/Assets/2. Preparation/SasLayerActor.cs" line="103" column="1" />
+      <Breakpoint file="/Users/Shared/Unity/SasRPG/Assets/2. Preparation/Editor/SasLayerResEditor.cs" line="184" column="1" />
+      <Breakpoint file="/Users/Shared/Unity/SasRPG/Assets/2. Preparation/Editor/SasLayerResEditor.cs" line="178" column="1" />
+      <Breakpoint file="/Users/Shared/Unity/SasRPG/Assets/2. Preparation/SasLayerActor.cs" line="148" column="1" />
+      <Breakpoint file="/Users/Shared/Unity/SasRPG/Assets/2. Preparation/SasLayerActor.cs" line="155" column="1" />
+      <Breakpoint file="/Users/Shared/Unity/SasRPG/Assets/2. Preparation/SasNavigator.cs" line="72" column="1" />
+      <Breakpoint file="/Users/Shared/Unity/SasRPG/Assets/2. Preparation/SasNavigator.cs" line="58" column="17" />
+      <Breakpoint file="/Users/Shared/Unity/SasRPG/Assets/2. Preparation/SasActor.cs" line="183" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

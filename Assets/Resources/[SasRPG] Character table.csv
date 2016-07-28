@@ -1,2 +1,2 @@
-index ( ushort ),level ( ushort ),required exp ( uint ),hp ( int ),attack ( int ),attack speed ( float ),shield ( int ),cure per a sec( int ),res ( string )
-1,0,0,100,10,1,0,1,cube
+index ( ushort ),level ( ushort ),required exp ( uint ),speed, hp ( int ),attack ( int ),attack speed ( float ),shield ( int ),cure per a sec( int ),res ( string )
+1,0,0,1,100,10,1,0,1,cube
